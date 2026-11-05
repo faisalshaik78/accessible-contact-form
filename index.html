@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Form | HTML Forms Task</title>
+  <meta name="description" content="A contact form with text fields, radio buttons, checkboxes, a dropdown and live validation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <section class="intro">
+      <p class="eyebrow">Get in touch</p>
+      <h1>Let's talk about your project</h1>
+      <p class="lead">Fill in the form and I'll get back to you within two working days. Fields marked <b class="req">*</b> are required.</p>
+      <ul class="points">
+        <li>Text fields, dropdown, radio buttons and checkboxes</li>
+        <li>Live validation with clear error messages</li>
+        <li>Keyboard and screen-reader friendly</li>
+      </ul>
+    </section>
+
+    <section class="card" aria-labelledby="formTitle">
+      <h2 id="formTitle" class="sr">Contact form</h2>
+
+      <div class="summary-err" id="errSummary" role="alert" hidden></div>
+
+      <form id="contactForm" novalidate>
+        <div class="row">
+          <div class="field">
+            <label for="name">Full name <b class="req">*</b></label>
+            <input id="name" name="name" type="text" autocomplete="name" placeholder="e.g. Shaik Faisal" required minlength="2" maxlength="60" aria-describedby="name-err">
+            <small class="err" id="name-err"></small>
+          </div>
+          <div class="field">
+            <label for="email">Email <b class="req">*</b></label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required aria-describedby="email-err">
+            <small class="err" id="email-err"></small>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="phone">Phone <span class="opt">(optional)</span></label>
+            <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="10-digit mobile number" pattern="[6-9][0-9]{9}" aria-describedby="phone-hint phone-err">
+            <small class="hint" id="phone-hint">Starts with 6–9, 10 digits.</small>
+            <small class="err" id="phone-err"></small>
+          </div>
+          <div class="field">
+            <label for="subject">Subject <b class="req">*</b></label>
+            <select id="subject" name="subject" required aria-describedby="subject-err">
+              <option value="">Select a subject</option>
+              <option>Job opportunity</option>
+              <option>Freelance project</option>
+              <option>Collaboration</option>
+              <option>Feedback</option>
+              <option>Something else</option>
+            </select>
+            <small class="err" id="subject-err"></small>
+          </div>
+        </div>
+
+        <fieldset class="field group" id="methodGroup" aria-describedby="method-err">
+          <legend>Preferred contact method <b class="req">*</b></legend>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="method" value="Email" required><span>Email</span></label>
+            <label class="choice"><input type="radio" name="method" value="Phone call"><span>Phone call</span></label>
+            <label class="choice"><input type="radio" name="method" value="WhatsApp"><span>WhatsApp</span></label>
+          </div>
+          <small class="err" id="method-err"></small>
+        </fieldset>
+
+        <fieldset class="field group">
+          <legend>What are you interested in? <span class="opt">(optional)</span></legend>
+          <div class="choices">
+            <label class="choice"><input type="checkbox" name="interest" value="Web development"><span>Web development</span></label>
+            <label class="choice"><input type="checkbox" name="interest" value="Frontend"><span>Frontend</span></label>
+            <label class="choice"><input type="checkbox" name="interest" value="Backend"><span>Backend</span></label>
+            <label class="choice"><input type="checkbox" name="interest" value="Internship"><span>Internship</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="message">Message <b class="req">*</b></label>
+          <textarea id="message" name="message" rows="5" required minlength="10" maxlength="300" placeholder="Tell me a little about what you need…" aria-describedby="message-count message-err"></textarea>
+          <div class="below">
+            <small class="err" id="message-err"></small>
+            <small class="count" id="message-count">0 / 300</small>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="choice consent"><input type="checkbox" id="consent" name="consent" required aria-describedby="consent-err"><span>I agree to be contacted about this enquiry. <b class="req">*</b></span></label>
+          <small class="err" id="consent-err"></small>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn primary">Send message</button>
+          <button type="reset" class="btn ghost" id="resetBtn">Reset</button>
+        </div>
+      </form>
+
+      <!-- Success state -->
+      <div class="success" id="success" hidden tabindex="-1">
+        <div class="tick" aria-hidden="true">✓</div>
+        <h2>Message sent</h2>
+        <p>Thanks <b id="sName"></b>, here's what was submitted:</p>
+        <dl id="sList"></dl>
+        <p class="demo">Demo only: nothing is sent anywhere, as this page has no server.</p>
+        <button class="btn primary" id="again" type="button">Send another</button>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
