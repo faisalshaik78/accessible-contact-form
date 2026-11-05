@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact Form | HTML Forms Task</title>
-  <meta name="description" content="A contact form with text fields, radio buttons, checkboxes, a dropdown and live validation.">
+  <meta name="theme-color" content="#f4f2fb">
+  <meta name="description" content="A responsive contact form demo with accessible form controls, clear validation, and a submission summary.">
+  <title>Accessible Contact Form</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -12,27 +13,26 @@
 </head>
 <body>
   <main class="page">
-    <section class="intro">
-      <p class="eyebrow">Get in touch</p>
-      <h1>Let's talk about your project</h1>
-      <p class="lead">Fill in the form and I'll get back to you within two working days. Fields marked <b class="req">*</b> are required.</p>
+    <section class="intro" aria-labelledby="pageTitle">
+      <p class="eyebrow">Accessible by design</p>
+      <h1 id="pageTitle">Let's start a conversation</h1>
+      <p class="lead">Use this form to share a question, project idea, or feedback. Fields marked <b class="req">*</b> are required.</p>
       <ul class="points">
-        <li>Text fields, dropdown, radio buttons and checkboxes</li>
-        <li>Live validation with clear error messages</li>
-        <li>Keyboard and screen-reader friendly</li>
+        <li>Clear labels and helpful validation</li>
+        <li>Keyboard-friendly form controls</li>
+        <li>Responsive layout for every screen</li>
       </ul>
     </section>
 
     <section class="card" aria-labelledby="formTitle">
       <h2 id="formTitle" class="sr">Contact form</h2>
-
-      <div class="summary-err" id="errSummary" role="alert" hidden></div>
+      <div class="summary-err" id="errSummary" role="alert" tabindex="-1" hidden></div>
 
       <form id="contactForm" novalidate>
         <div class="row">
           <div class="field">
             <label for="name">Full name <b class="req">*</b></label>
-            <input id="name" name="name" type="text" autocomplete="name" placeholder="e.g. Shaik Faisal" required minlength="2" maxlength="60" aria-describedby="name-err">
+            <input id="name" name="name" type="text" autocomplete="name" placeholder="e.g. Alex Morgan" required minlength="2" maxlength="60" aria-describedby="name-err">
             <small class="err" id="name-err"></small>
           </div>
           <div class="field">
@@ -46,7 +46,7 @@
           <div class="field">
             <label for="phone">Phone <span class="opt">(optional)</span></label>
             <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="10-digit mobile number" pattern="[6-9][0-9]{9}" aria-describedby="phone-hint phone-err">
-            <small class="hint" id="phone-hint">Starts with 6–9, 10 digits.</small>
+            <small class="hint" id="phone-hint">Use 10 digits, starting with 6–9.</small>
             <small class="err" id="phone-err"></small>
           </div>
           <div class="field">
@@ -67,8 +67,8 @@
           <legend>Preferred contact method <b class="req">*</b></legend>
           <div class="choices">
             <label class="choice"><input type="radio" name="method" value="Email" required><span>Email</span></label>
-            <label class="choice"><input type="radio" name="method" value="Phone call"><span>Phone call</span></label>
-            <label class="choice"><input type="radio" name="method" value="WhatsApp"><span>WhatsApp</span></label>
+            <label class="choice"><input type="radio" name="method" value="Phone call" required><span>Phone call</span></label>
+            <label class="choice"><input type="radio" name="method" value="WhatsApp" required><span>WhatsApp</span></label>
           </div>
           <small class="err" id="method-err"></small>
         </fieldset>
@@ -85,10 +85,10 @@
 
         <div class="field">
           <label for="message">Message <b class="req">*</b></label>
-          <textarea id="message" name="message" rows="5" required minlength="10" maxlength="300" placeholder="Tell me a little about what you need…" aria-describedby="message-count message-err"></textarea>
+          <textarea id="message" name="message" rows="5" required minlength="10" maxlength="300" placeholder="Write your message here…" aria-describedby="message-count message-err"></textarea>
           <div class="below">
             <small class="err" id="message-err"></small>
-            <small class="count" id="message-count">0 / 300</small>
+            <small class="count" id="message-count" aria-live="polite">0 / 300</small>
           </div>
         </div>
 
@@ -103,14 +103,13 @@
         </div>
       </form>
 
-      <!-- Success state -->
       <div class="success" id="success" hidden tabindex="-1">
         <div class="tick" aria-hidden="true">✓</div>
-        <h2>Message sent</h2>
-        <p>Thanks <b id="sName"></b>, here's what was submitted:</p>
+        <h2>Submission complete</h2>
+        <p>Thanks <b id="sName"></b>. Here is your submission summary:</p>
         <dl id="sList"></dl>
-        <p class="demo">Demo only: nothing is sent anywhere, as this page has no server.</p>
-        <button class="btn primary" id="again" type="button">Send another</button>
+        <p class="demo">Demo only: your information has not been sent to a server.</p>
+        <button class="btn primary" id="again" type="button">Send another message</button>
       </div>
     </section>
   </main>
